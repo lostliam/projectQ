@@ -1,0 +1,80 @@
+{"ANT":" console.show();
+var res = http.get("http://t.weather.sojson.com/api/weather/city/101030100");
+if(res.statusCode != 200){
+    console.error("联网失败，请检查网络!");
+    exit();
+    }else{
+    var weather = res.body.json();
+    var t=weather.date-0;
+
+    if(t>20181011){
+        console.error("脚本过期，请到脚本哥群内更新");
+        app.startActivity({
+action: "android.intent.action.VIEW",
+data: "mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D-XJTzxSmC3gHeO-kR1fPu5yd_TrNzyat",
+packageName: "com.tencent.mobileqq",
+});
+exit();
+}else{
+        console.info("联网成功，脚本可正常使用")}
+  
+}
+while(!id("tv_home_tab").exists()){
+    console.error("请打开App首页");
+    sleep(2500);
+}
+
+while(true){
+    log("脚本哥免费出品，Q群：16768994")
+
+    var i=1;
+    console.info("正在刷新首页")
+    id("tv_home_tab").findOne().click();
+    console.info("等待刷新成功，脚本哥群内可获取高效率优化版")
+
+    sleep(7000);
+    while(i<4){
+        var fg=id("tv_read_count").findOnce(1);
+        if(fg==null){break}
+        console.log("获取新闻");
+        tclick(fg);
+        sleep(3000);
+        work();
+        back();
+        console.info("正在查找下一篇新闻，脚本哥群内可获取高效率优化版")
+
+        sleep(5000);
+        var fg=id("tv_read_count").findOnce(2);
+        if(fg==null){break}
+        console.log("获取新闻");
+        tclick(fg);
+        sleep(3000);
+        work();
+        back();
+        console.info("正在查找下一篇新闻，脚本哥群内可获取高效率优化版")
+
+        sleep(2500);
+        id("pull_list_view").findOne().scrollForward();
+        sleep(3000);
+        i++;}           
+        }
+     
+ 
+function tclick(a){
+    while(!a.clickable()){
+        a=a.parent();}
+        a.click();}
+
+function work() {
+    var t=random(10,15);
+    console.info("正在挂机");
+    while (t > 0) {
+        var r = random(0, 100);
+        swipe(device.width / 2 + r, device.height / 2 + r, device.width / 2 - r, device.height - r, 1000 + r)
+        sleep(8000);
+        t--;
+        log("挂机还剩"+t * 8 + "s");
+    }
+  console.clear();
+}
+"}
