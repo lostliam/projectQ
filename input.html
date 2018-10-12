@@ -36,7 +36,8 @@ ui.ok.click(()=>{
     }
     ui.gid.setError(null);
     if(text==x){
-       storage.put("ird",text)
-        ui.finished();}
+       storage.put("ird",text);
+back();
+       }
 });
 
