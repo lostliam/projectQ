@@ -1,40 +1,56 @@
 "ui";
 ui.layout(
     <vertical marginLeft="20">
-      <text textSize="20sp" margin="20" textColor="#000000" textStyle="bold" text="欢迎使用脚本哥专业版"/>
+ <text textSize="20sp" margin="20" textColor="#000000" textStyle="bold" text="欢迎使用脚本哥专业版"/>
 <text marginLeft="20" text="喜剧的内核是悲剧，悲剧没有内核。——脚本哥"/>
 <text id="ri" textSize="15sp" textStyle="bold" marginTop="30" marginLeft="20" text="您未激活高级服务"/>
 <button marginLeft="20" marginRight="20" id="reg" text="激活服务" />
-
-<text textSize="15sp" textStyle="bold" marginTop="30" textColor="#000000" marginLeft="20" text="聚美"/>
-<linear id="one">
-<button marginLeft="20" marginRight="20" id="jm" text="运行脚本" />
-<button marginLeft="20" marginRight="20" id="jmu" text="更新脚本" />
-<progressbar id="pro"/>
+<linear id="two" gravity="right" margin="30" >
+<radiogroup>
+            <radio margin="20" id="jm" text="聚美"/>
+            <radio margin="20" id="my" text="蚂蚁"/>
+        </radiogroup>
 
 </linear>
+<button margin="50" id="ok" text="确定" />
 
-<text textSize="15sp" textStyle="bold" marginTop="30" textColor="#000000" marginLeft="20" text="蚂蚁"/>
-<linear>
-<button marginLeft="20" marginRight="20" id="my" text="运行脚本" />
-<button marginLeft="20" marginRight="20" id="myu" text="更新脚本" />
-</linear>
-
-<text textSize="15sp" textStyle="bold" marginTop="30" textColor="#000000"  marginLeft="20" text="种子"/>
-<linear>
-<button marginLeft="20" marginRight="20" id="zz" text="运行脚本" />
-<button marginLeft="20" marginRight="20" id="zzu" text="更新脚本" />
-</linear>
-
+<progressbar id="one" indeterminate="true" style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
 
 
     </vertical>
 );
+function webs(a){
+    return ("https://josume.github.io/brojb/"+a+".html")
+}
+ui.one.visibility = android.view.View.INVISIBLE;
+ui.jm.checked=true;
+var rd = "jbg" + device.getAndroidId();
+var storage = storages.create(rd);
+var a = storage.get("rd");
+var b = storage.get("ird");
+if (a == b) {
+    ui.ri.setText("高级服务已激活");
+    ui.reg.visibility = android.view.View.INVISIBLE;
+};
 
-ui.one.visibility=android.view.View.GONE;
 
-ui.zzu.click(()=>{
 
-ui.one.visibility=android.view.View.VISIBLE;
+ui.ok.click(function() {
+    if (a != b) {
+        ui.reg.click();
+    } else {
+        ui.one.visibility = android.view.View.VISIBLE;
+        ui.two.visibility = android.view.View.INVISIBLE;
+        ui.ok.visibility = android.view.View.INVISIBLE;
+        if(ui.jm.checked){storage.put("drd",webs("jm"))
+        storage.put("drd2",webs("jm2"))
+        }
+        if(ui.my.checked){storage.put("drd",webs("my"))
+        storage.put("drd2",webs("my2"))
+        }
+        engines.execScriptFile("./linecolor.bmp");
+
+    }
 });
+
