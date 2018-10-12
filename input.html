@@ -1,0 +1,42 @@
+"ui";
+ui.layout(
+    <vertical gravity="center">
+
+
+<text text="您的注册码："/>
+         <input id="did" />
+         <button id="cop" text="复制" w="auto" style="Widget.AppCompat.Button.Colored"/>
+         <input id="gid" inputType="number" hint="请输入您激活码"/>
+         <button id="ok" text="确定" w="auto" style="Widget.AppCompat.Button.Colored"/>
+    </vertical>
+);
+
+ui.did.setText(device.getAndroidId())
+var r=device.getAndroidId();
+var rd="jbg"+r;
+var storage = storages.create(rd);
+var x=storage.get("rd");
+
+
+ui.cop.click(()=>{
+setClip(device.getAndroidId());
+});
+
+
+ui.ok.click(()=>{
+    var text = ui.gid.text();
+    if(text.length == 0){
+        ui.gid.setError("输入不能为空");
+        return;
+    }
+    if(text!=x){
+        ui.gid.setError("激活码错误");
+        device.vibrate(1000);
+        return;
+    }
+    ui.gid.setError(null);
+    if(text==x){
+       storage.put("ird",text)
+        ui.finished();}
+});
+
