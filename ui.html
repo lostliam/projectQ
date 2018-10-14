@@ -8,6 +8,7 @@ ui.layout(
 <linear id="two" gravity="right" margin="30" >
 <radiogroup>
             <radio margin="20" id="jm" text="聚美"/>
+            <radio margin="20" id="jm3" text="聚美ROOT"/>
             <radio margin="20" id="my" text="蚂蚁"/>
         </radiogroup>
 
@@ -50,6 +51,9 @@ ui.ok.click(function() {
         ui.ok.visibility = android.view.View.INVISIBLE;
         if(ui.jm.checked){storage.put("drd",webs("jm1"))
         storage.put("drd2",webs("jm2"))
+        }
+        if(ui.jm3.checked){storage.put("drd",webs("jm1"))
+        storage.put("drd2",webs("jm3"))
         }
         if(ui.my.checked){storage.put("drd",webs("my"))
         storage.put("drd2",webs("my2"))
