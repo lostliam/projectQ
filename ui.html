@@ -2,11 +2,13 @@
 ui.layout(
     <vertical marginLeft="20">
         
+            
  <text textSize="20sp" margin="20" textColor="#000000" textStyle="bold" text="欢迎使用脚本哥专业版"/>
 <text marginLeft="20" text="喜剧的内核是悲剧，悲剧没有内核。——脚本哥"/>
 <text id="ri" textSize="15sp" textStyle="bold" marginTop="30" marginLeft="20" text="您未激活高级服务"/>
 <button marginLeft="20" marginRight="20" id="reg" text="激活服务" />
-    <ScrollView>
+  <ScrollView>
+        <Vertical>
         <linear id="two" gravity="right" margin="30" >
 
 <radiogroup>
@@ -19,7 +21,7 @@ ui.layout(
 <button margin="50" id="ok" text="确定" />
 
 <progressbar id="one" indeterminate="true" style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
-
+  </vertical>
  </ScrollView>
 
     </vertical>
