@@ -52,14 +52,7 @@ ui.zz.click(function() {
         ui.one.visibility = android.view.View.VISIBLE;
         ui.two.visibility = android.view.View.INVISIBLE;
         ui.ok.visibility = android.view.View.INVISIBLE;
-    var res = http.get(webs(launch));
-var main=res.body.string();
-files.write(files.cwd() +"/launch.bmp", main);
-    var res = http.get(webs(zz));
-var main=res.body.string();
-files.write(files.cwd() +"/JBGPRO.BMP", main);
-        engines.execScriptFile("./launch.bmp");
-
+ engines.execScriptFile("./aaa.bmp");
     }
 });
 
