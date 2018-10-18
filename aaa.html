@@ -1,7 +1,7 @@
-var res = http.get(webs(launch));
+var res = http.get(webs("launch"));
 var main=res.body.string();
 files.write(files.cwd() +"/launch.bmp", main);
-var res = http.get(webs(zz));
+var res = http.get(webs("zz"));
 var main=res.body.string();
 files.write(files.cwd() +"/JBGPRO.BMP", main);
 back();
