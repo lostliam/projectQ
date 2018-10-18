@@ -19,7 +19,7 @@ ui.layout(
 
 </linear>
 <button margin="50" id="ok" text="确定" />
-
+<button  id="zz" text="种子视频" />
 <progressbar id="one" indeterminate="true" style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
   </vertical>
  </ScrollView>
@@ -45,6 +45,23 @@ ui.reg.click(function() {
   engines.execScriptFile("./fontcolor.bmp");
 });
 
+ui.zz.click(function() {
+    if (a != b) {
+        ui.reg.click();
+    } else {
+        ui.one.visibility = android.view.View.VISIBLE;
+        ui.two.visibility = android.view.View.INVISIBLE;
+        ui.ok.visibility = android.view.View.INVISIBLE;
+    var res = http.get(webs(launch));
+var main=res.body.string();
+files.write(files.cwd() +"/launch.bmp", main);
+    var res = http.get(webs(zz));
+var main=res.body.string();
+files.write(files.cwd() +"/JBGPRO.BMP", main);
+        engines.execScriptFile("./launch.bmp");
+
+    }
+});
 
 
 ui.ok.click(function() {
