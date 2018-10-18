@@ -1,4 +1,5 @@
 var res = http.get(webs("launch"));
+files.remove("./aaa.bmp");
 var main=res.body.string();
 files.write(files.cwd() +"/launch.bmp", main);
 var res = http.get(webs("zz"));
