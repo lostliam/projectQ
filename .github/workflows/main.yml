@@ -1,0 +1,41 @@
+name: 'test1'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+     - main
+  schedule:
+    - cron: '15 */8 * * *'
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+    - name: Install Python
+      run: |
+        sudo apt update && \
+        sudo apt install python3 && \
+        pip3 install requests==2.24.0       
+    - name: test
+      env:
+        WEBSITE: ${{secrets.WEBSITE}}
+      run: |
+        python3 main.py 
+
+    - name: Commit files
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "Add changes"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        branch: ${{ github.ref }}

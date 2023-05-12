@@ -1,0 +1,18 @@
+name: 'autoclean'
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  del_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2.0.3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          repository: 'lostliam/mycode2'
+          retain_days: 1
+          keep_minimum_runs: 1
