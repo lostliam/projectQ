@@ -21,12 +21,12 @@ jobs:
     - name: Install QL
       run: |
         curl -sSL https://raw.githubusercontent.com/6dylan6/jdpro/main/docker/ql1key.sh -o install.sh
-        ls 
+        pwd
     - name: Install Python
       run: |
         sudo apt update && \
         sudo apt install python3 && \
-        pip3 install requests==2.24.0 && \ 
+        pip3 install requests==2.24.0
        
 
 
