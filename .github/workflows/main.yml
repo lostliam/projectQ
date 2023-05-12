@@ -15,19 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-    - name: Install QL
+        node-version: 18
+    - run: npm ci
+    - run: npm test
+      env:
+        JD_COOKIE: ${{secrets.CK}}
+    - name: Install
       run: |
-        curl -sSL https://raw.githubusercontent.com/6dylan6/jdpro/main/docker/ql1key.sh -o install.sh
-        pwd
-        ping jd.com
-    - name: Install Python
-      run: |
-        sudo apt update && \
-        sudo apt install python3 && \
-        pip3 install requests==2.24.0
+        git https://github.com/6dylan6/jdpro.git
+        ls
+        
        
 
 
