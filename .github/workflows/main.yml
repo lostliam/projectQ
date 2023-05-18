@@ -22,12 +22,10 @@ jobs:
     - run: npm test
       env:
         JD_COOKIE: ${{secrets.CK}}
-    - name: Install
-      run: |
-        git https://github.com/6dylan6/jdpro.git
-        ls
-        
-       
 
+    - name: Install Dependency       
+      run: |
+        npm install -g npm png-js date-fns axios crypto-js ts-md5 tslib @types/node requests tough-cookie jsdom download tunnel fs ws form-data      
+        node ./jd_speed_sign.js.js  #脚本存在根目录scripts文件夹下
 
 
