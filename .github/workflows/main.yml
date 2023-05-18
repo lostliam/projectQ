@@ -27,5 +27,7 @@ jobs:
     - name: Test       
       run: |
         node jd_fruit.js
+    - name: Setup Debug Session
+        uses: csexton/debugger-action@master
 
 
