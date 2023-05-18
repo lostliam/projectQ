@@ -18,15 +18,13 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-      env:
-        JD_COOKIE: ${{secrets.CK}}
+
 
     - name: Install Dependency       
       run: |
         npm install -g npm png-js date-fns axios crypto-js ts-md5 tslib @types/node requests tough-cookie jsdom download tunnel fs ws form-data      
-    - name: Test       
-      run: |
-        node jd_fruit.js
+      env:
+        JD_COOKIE: ${{secrets.CK}}
     - name: Setup Debug Session
       uses: csexton/debugger-action@master
 
