@@ -18,7 +18,7 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v2.5.2
     - name: Setup Debug Session
-      uses: csexton/debugger-action@master
+      uses: mxschmitt/action-tmate@v1
       env:
         JD_COOKIE: ${{secrets.CK}}
 
