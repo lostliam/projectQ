@@ -13,6 +13,6 @@ jobs:
         uses: Mattraks/delete-workflow-runs@v2.0.3
         with:
           token: ${{ secrets.GH_TOKEN }}
-          repository: 'lostliam/mycode2'
+          repository: 'lostliam/projectQ'
           retain_days: 1
           keep_minimum_runs: 1
