@@ -14,18 +14,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
-
-    - name: Install Dependency       
-      run: |
-        npm install -g npm png-js date-fns axios crypto-js ts-md5 tslib @types/node requests tough-cookie jsdom download tunnel fs ws form-data      
+    - name: Test    
       env:
         JD_COOKIE: ${{secrets.CK}}
-    - name: Setup Debug Session
-      uses: csexton/debugger-action@master
+    - name: Setup
+      run:docker run -dit \
+  -v $PWD/ql/data:/ql/data \
+  -p 5700:5700 \
+  --name qinglong \
+  --hostname qinglong \
+  --restart unless-stopped \
+  whyour/qinglong:latest && docker exec qinglong bash -c "curl -fsSL https://ghproxy.com/https://raw.githubusercontent.com/FlechazoPh/QLDependency/main/Shell/QLOneKeyDependency.sh | sh" && docker exec qinglong bash -c 'ql repo https://github.com/6dylan6/jdpro.git "jd_|jx_|jddj_" "backUp" "^jd[^_]|USER|JD|function|sendNotify"' && docker exec -i qinglong bash -c "echo 'export JD_COOKIE=\"${JD_COOKIE}\"' >> /etc/profile && source /etc/profile && find /ql/data/scripts/6dylan6_jdpro/  -maxdepth 1 -type f -name '*.js' -exec node {} \;"
+
 
 
