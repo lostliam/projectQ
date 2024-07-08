@@ -18,6 +18,9 @@ jobs:
       with:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
         fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+    - name: TestT
+      run: |
+        echo $(date +%s) > test.md
     - name: Test    
       env:
         JD_COOKIE: ${{secrets.CK}}
@@ -25,3 +28,14 @@ jobs:
         sudo docker run -dit -v $PWD/ql/data:/ql/data -p 5700:5700 --name qinglong --hostname qinglong --restart unless-stopped whyour/qinglong:latest
         sudo docker exec qinglong bash -c "npm config set registry https://registry.npmmirror.com && npm install json5 js-base64 require tough-cookie jsdom global-agent @types/node typescript dotenv form-data png-js ts-md5 tslib jieba ws@7.4.3 axios date-fns moment prettytable fs crypto-js ts-node depend ds requests request cheerio node-jsencrypt cjs qs ql node-telegram-bot-api crypto https proxy agent -g && pip3 install pycryptodome pytz typescript httpx success redis jieba requests ping3 PyExecJS" 
         sudo docker exec qinglong bash -c 'ql repo https://github.com/6dylan6/jdpro.git "jd_|jx_|jddj_" "backUp" "^jd[^_]|USER|JD|function|sendNotify"' && docker exec -i qinglong bash -c "echo 'export JD_COOKIE=\"${JD_COOKIE}\"' >> /etc/profile && source /etc/profile && find /ql/data/scripts/6dylan6_jdpro/  -maxdepth 1 -type f -name '*.js' -exec timeout -s SIGTERM -k 10s 10m node {} \;"
+
+    - name: Commit files
+      run: |
+        git config --local user.email "286796+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "Add changes"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        branch: ${{ github.ref }}
