@@ -26,7 +26,7 @@ jobs:
         JD_COOKIE: ${{secrets.CK}}
       run: |
         sudo docker run -dit -v $PWD/ql/data:/ql/data -p 5700:5700 --name qinglong --hostname qinglong --restart unless-stopped whyour/qinglong:latest
-        sudo docker exec qinglong bash -c "npm config set registry https://registry.npmmirror.com && npm install json5 js-base64 require tough-cookie jsdom global-agent @types/node typescript dotenv form-data png-js ts-md5 tslib jieba ws@7.4.3 axios date-fns moment prettytable fs crypto-js ts-node depend ds requests request cheerio node-jsencrypt cjs qs ql node-telegram-bot-api crypto https proxy agent -g && pip3 install pycryptodome pytz typescript httpx success redis jieba requests ping3 PyExecJS" 
+        sudo docker exec qinglong bash -c "npm config set registry https://registry.npmmirror.com && npm install json5 js-base64 require tough-cookie jsdom got global-agent @types/node typescript dotenv form-data png-js ts-md5 tslib jieba ws@7.4.3 axios date-fns moment prettytable fs crypto-js ts-node depend ds requests request cheerio node-jsencrypt cjs qs ql node-telegram-bot-api crypto https proxy agent -g && pip3 install pycryptodome pytz typescript httpx success redis jieba requests ping3 PyExecJS" 
         sudo docker exec qinglong bash -c 'ql repo https://github.com/6dylan6/jdpro.git "jd_|jx_|jddj_" "backUp" "^jd[^_]|USER|JD|function|sendNotify"' && docker exec -i qinglong bash -c "echo 'export JD_COOKIE=\"${JD_COOKIE}\"' >> /etc/profile && source /etc/profile && find /ql/data/scripts/6dylan6_jdpro/  -maxdepth 1 -type f -name '*.js' -exec timeout -s SIGTERM -k 10s 10m node {} \;"
 
     - name: Commit files
